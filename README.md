@@ -1,59 +1,99 @@
-# LvRechnerFrontend
+# 🧮 LV-Rechner Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.3.
+Dies ist das **Frontend** eines einfachen Lebensversicherungs-Rechners, der mit **Angular** entwickelt wurde.
+Er kommuniziert mit einem Java **Spring Boot Backend**, das die Beitragsberechnung durchführt.
 
-## Development server
+---
 
-To start a local development server, run:
+## 💼 Technologien
 
-```bash
-ng serve
-```
+* [Angular CLI](https://angular.io/cli)
+* TypeScript
+* HTML & CSS
+* Node.js + npm
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## ⚙️ Setup & Entwicklung
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### 🔧 Voraussetzungen
 
-```bash
-ng generate component component-name
-```
+* Node.js (empfohlen: LTS-Version)
+  → Installierbar mit [winget](https://learn.microsoft.com/de-de/windows/package-manager/winget/) oder von [nodejs.org](https://nodejs.org)
+* Angular CLI
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+### ✅ Installation
 
 ```bash
-ng build
+npm install       # Abhängigkeiten installieren
+ng serve          # Dev-Server starten
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Öffne dann im Browser:
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
+```
+http://localhost:4200
 ```
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## 🔗 Verbindung zum Backend
 
-```bash
-ng e2e
+Das Frontend ruft per **HTTP POST** einen Endpunkt deines Spring Boot Backends auf, z. B.:
+
+```http
+POST http://localhost:8080/api/berechne
+Content-Type: application/json
+
+{
+  "alter": 30,
+  "versicherungssumme": 100000,
+  "laufzeit": 20
+}
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Die Antwort enthält den berechneten Monatsbeitrag als `double`.
 
-## Additional Resources
+---
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 📁 Projektstruktur (Kurzüberblick)
+
+```plaintext
+lv-rechner-frontend/
+├── src/
+│   ├── app/
+│   │   ├── components/       # Deine UI-Komponenten
+│   │   ├── services/         # HTTP-Aufrufe zum Backend
+│   │   ├── app-routing.module.ts
+│   │   └── app.component.ts / .html / .css
+├── angular.json              # Angular-Konfiguration
+├── package.json              # Abhängigkeiten
+└── README.md
+```
+
+---
+
+## 📝 Geplante Features
+
+* [ ] Eingabeformular für Alter, Versicherungssumme, Laufzeit
+* [ ] Verbindung zum Backend via `HttpClient`
+* [ ] Anzeige des berechneten Beitrags
+* [ ] Fehlerbehandlung & Validierung
+* [ ] Mobile-optimiertes Layout
+
+---
+
+## ⚖️ Entwicklungshinweise
+
+* Verwende `ng generate component name` um neue Komponenten zu erstellen
+* Für Services: `ng generate service name`
+* Routing kann später aktiviert werden (siehe `app-routing.module.ts`)
+
+---
+
+## 🧑‍💻 Autor
+
+* 👤 Daniel Silvan
+* 📧 \[[deine.email@example.com](mailto:deine.email@example.com)]
+* 🌐 [Backend-Repo ansehen](https://github.com/deinname/lv-rechner-backend)
+
